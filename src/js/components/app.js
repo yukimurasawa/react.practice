@@ -53,7 +53,8 @@ export default class App extends React.Component {
                     }   
                 ]
             },
-                selectedGroup: "group-1"
+            todoCount: 4,
+            selectedGroup: "group-1"
         }
     }
 
@@ -62,12 +63,55 @@ export default class App extends React.Component {
         this.setState({selectedGroup: id});
     }
 
+    onAddTodo(label){
+        let _state=Object.assign({},this.state);
+        _state.todoCount++;
+        let todoList=_state.todoList[_state.selectedGroup];
+        let todoItem= {
+            id: "item-"+_state.todoCount,
+            label: label,
+            completed: false
+        }
+        todoList.push(todoItem);
+        this.setState(_state);
+    }
+
+    onCompleteTodo(id){
+        let _state=Object.assign({},this.state);
+        let todoList=_state.todoList[_state.selectedGroup];
+        this.setState(_state);
+        for(var i=0;i<todoList.length;i++){
+            if(todoList[i].id == id){
+                todoList[i].completed = true;
+                break;
+            }
+        }
+        this.setState(_state);
+    }
+
+    onDeleteTodo(id){
+        let _state =Object.assign({},this.state);
+        let todoList=_state.todoList[_state.selectedGroup];
+        this.setState(_state);
+        for(var i=0;i<todoList.length;i++){
+            if(todoList[i].id == id){
+                todoList.splice(i,1);
+                break;
+            }
+        }
+        this.setState(_state);
+    }
+
     render() {
         return (
         <div className="wrap">
             <SideArea groupList={this.state.groupList}
                       onSelect={this.onSelectGroup.bind(this)}/>
-            <MainArea todoList={this.state.todoList[this.state.selectedGroup]}/>
+            <MainArea todoList={this.state.todoList[this.state.selectedGroup]}
+                      onDeleteTodo={this.onDeleteTodo.bind(this)}
+                      onCompleteTodo={this.onCompleteTodo.bind(this)}
+                      onAddTodo={this.onAddTodo.bind(this)}
+                      />
         </div>
         );
     }

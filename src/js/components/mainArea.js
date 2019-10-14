@@ -16,41 +16,20 @@ export default class MainArea extends React.Component {
     }
 
     onChangeTodoInput(event){
-
         this.setState({todoInputValue:event.target.value})
     }
 
     onClickAddButton(event){
-        let addItem = {label:this.state.todoInputValue};
-        let todoList = this.props.todoList.slice();
-        todoList.push(addItem);
-
-        this.setState({
-            todoList: todoList,
-            todoInputValue:""
-        });
+        this.setState({todoInputValue:""});
+        this.props.onAddTodo(this.state.todoInputValue);
     }
 
     onCompleteTodo(id) {
-        let _state =Object.assign({},this.props);
-        for(var i=0;i<_state.todoList.length;i++){
-            if(_state.todoList[i].id == id){
-                _state.todoList[i].completed = true;
-                break;
-            }
-        }
-        this.setState(_state);
+        this.props.onCompleteTodo(id);
     }
 
     onDeleteTodo(id) {
-        let _state =Object.assign({},this.props);
-        for(var i=0;i<_state.todoList.length;i++){
-            if(_state.todoList[i].id == id){
-                _state.todoList.splice(i,1);
-                break;
-            }
-        }
-        this.setState(_state);
+        this.props.onDeleteTodo(id);
     }
 
     renderTodoItems() {
