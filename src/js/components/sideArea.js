@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import GropuDialog from './groupdialog.js';
 
 
 export default class SideArea extends React.Component {
@@ -13,6 +14,10 @@ export default class SideArea extends React.Component {
         let listItem= ReactDOM.findDOMNode(event.target);
         let id= listItem.dataset.id;
         this.props.onSelect(id);
+    }
+
+    onSaveAddGroupDialog(groupName){
+        this.props.onAddGroup(groupName);
     }
     
     renderGroup() {
@@ -30,6 +35,7 @@ export default class SideArea extends React.Component {
     render() {
         return(
             <div className="side-area">
+                <GropuDialog onSave={this.onSaveAddGroupDialog.bind(this)}/>
                 <ul>
                     {this.renderGroup()}
                 </ul>
