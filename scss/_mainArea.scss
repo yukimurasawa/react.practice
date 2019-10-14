@@ -8,6 +8,7 @@
         width: 100%;
         height: calc(100% - #{$headerHeight} - #{$footerHeight});
         padding: 20px;
+        background-image: url(../backgroundimage/image5.jpg);
         .todo-list {
             margin: 0;
             padding: 0;
@@ -18,6 +19,7 @@
                 padding: 10px 20px;
                 margin-bottom: 5px;
                 list-style: none;
+                background-color: #ffffff; 
                 input[type=checkbox] {
                     margin-right: 20px;
                 }
