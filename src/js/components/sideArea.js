@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 
 export default class SideArea extends React.Component {
@@ -8,7 +9,9 @@ export default class SideArea extends React.Component {
 
     }
 
-    onClickGroup(id){
+    onClickGroup(event){
+        let listItem= ReactDOM.findDOMNode(event.target);
+        let id= listItem.dataset.id;
         this.props.onSelect(id);
     }
     
@@ -17,7 +20,8 @@ export default class SideArea extends React.Component {
         for(var i=0 ;i<this.props.groupList.length;i++){
             let group = this.props.groupList[i];
             let groupItem = (<li className="groupList" key ={group.id}
-                                onClick={()=>{this.onClickGroup(group.id)}}>{group.label}</li>)
+                                data-id={group.id}
+                                onClick={this.onClickGroup.bind(this)}>{group.label}</li>)
             groupListDom.push(groupItem);
         }
         return groupListDom;
