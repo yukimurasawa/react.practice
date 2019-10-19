@@ -10,15 +10,15 @@ export default class EditGrouppDialog extends React.Component{
     }
     
     onSave(event){
-        this.props.onSave(this.state.groupName);
+        this.props.onSave(this.props.group.id,this.state.groupName);
     }
 
     onCancel(event){
         this.props.onCancel();
     }
 
-    onDelete(){
-        this.props.onDelete();
+    onDelete(event){
+        this.props.onDelete(this.props.group.id);
     }
 
     onChangeGroupName(event){
@@ -38,7 +38,7 @@ export default class EditGrouppDialog extends React.Component{
                         <input type="text"
                                name="groupName"
                                className="group-text-input"
-                               value={this.props.group.label}
+                            //    value={this.props.group}
                                onChange={this.onChangeGroupName.bind(this)}>
                         </input>
                     </div>

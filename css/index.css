@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0;
   outline: none;
+  user-select: none;
 }
 
 html, body {
@@ -27,13 +28,45 @@ li {
 .side-area {
   width: 300px;
   height: 100%;
-  background: blue;
+  background: #ffffff;
+  position: relative;
 }
 
 .groupList {
-  padding: 10px 20px;
+  padding: 10px 10px;
   border-bottom: 1px solid #cccccc;
+  overflow: hidden;
   cursor: pointer;
+}
+
+.groupList button {
+  float: right;
+  width: 50px;
+  height: 20px;
+}
+
+.groupList span {
+  display: block;
+  cursor: pointer;
+  float: left;
+  width: 150px;
+}
+
+.side-area-footer {
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0;
+  padding: 20px;
+  width: 100%;
+}
+
+.side-area-footer .add-group-button {
+  width: 100%;
+  height: 40px;
+  border: 1px solod #cccccc;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #FDC400;
 }
 
 .main-area {
@@ -46,8 +79,9 @@ li {
 .main-area .list-area {
   box-sizing: border-box;
   width: 100%;
-  height: calc(100% - 60px - 40px);
+  height: calc(100% - 60px);
   padding: 20px;
+  background-image: url(../backgroundimage/image5.jpg);
 }
 
 .main-area .list-area .todo-list {
@@ -62,6 +96,7 @@ li {
   padding: 10px 20px;
   margin-bottom: 5px;
   list-style: none;
+  background-color: #ffffff;
 }
 
 .main-area .list-area .todo-list .todo-list__item input[type=checkbox] {
@@ -102,6 +137,25 @@ li {
   float: right;
 }
 
+.main-area-footer {
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0;
+  padding: 20px;
+  width: 100%;
+}
+
+.main-area-footer .add-image-button {
+  width: 175px;
+  height: 40px;
+  border: 1px solod #cccccc;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #FDC400;
+  float: right;
+  margin-right: 10px;
+}
+
 .header {
   box-sizing: border-box;
   width: 100%;
@@ -119,4 +173,164 @@ li {
   bottom: 0;
   left: 0;
   background: #cccccc;
+}
+
+.modal-layer {
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  position: fixed;
+  z-index: 99;
+}
+
+.dialog {
+  background-color: #ffffff;
+  border-radius: 5px;
+  position: absolute;
+  left: calc(50% - 200px);
+  top: 200px;
+  width: 400px;
+}
+
+.dialog-header {
+  background: #EDEDED;
+  padding: 10px 20px;
+  text-align: center;
+  font-weight: 700;
+  border-radius: 5px 5px 0 0;
+}
+
+.dialog-content {
+  padding: 20px;
+  padding-right: 10px;
+}
+
+.dialog-content .group-text-input {
+  padding: 5px;
+  width: 240px;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+  font-size: 1rem;
+}
+
+.dialog-footer {
+  padding: 10px 20px;
+  border-top: 1px solid #cccccc;
+  overflow: hidden;
+}
+
+.dialog-footer .cancel-button {
+  float: left;
+  width: 80px;
+  height: 30px;
+  border-radius: 5px;
+  border: 0;
+  background: #4466FF;
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: #ffffff;
+}
+
+.dialog-footer .save-button {
+  float: right;
+  width: 80px;
+  height: 30px;
+  border-radius: 5px;
+  border: 0;
+  background: #eeeeee;
+  cursor: pointer;
+  font-size: 0.8rem;
+  margin-right: 10px;
+}
+
+.dialog-footer .save-button:hover {
+  opacity: 0.7;
+}
+
+.image-layer {
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  position: fixed;
+  z-index: 99;
+}
+
+.image-dialog {
+  background-color: #ffffff;
+  border-radius: 5px;
+  position: absolute;
+  left: 25%;
+  top: 10%;
+  width: 50%;
+  height: 80%;
+}
+
+.image-dialog-header {
+  background: #EDEDED;
+  padding: 10px 20px;
+  text-align: center;
+  font-weight: 700;
+  border-radius: 5px 5px 0 0;
+}
+
+.image-dialog-content {
+  padding: 20px;
+  padding-right: 10px;
+  overflow: auto;
+  height: calc(80% - 24px - 50px);
+}
+
+.images-list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.images-list li {
+  padding-bottom: 10px;
+  padding-right: 10px;
+  margin: 0;
+  grid-template-columns: repeat(7, 1fr);
+  cursor: pointer;
+}
+
+.images-list li img {
+  width: 100px;
+  height: 100px;
+  transition-duration: 0.3s;
+}
+
+.images-list li img:hover {
+  transform: scale(1.1);
+}
+
+.images-list li img:active {
+  opacity: 0.3;
+  transition-duration: 0s;
+}
+
+.image-dialog-footer {
+  padding: 10px 20px;
+  border-top: 1px solid #cccccc;
+  width: 100%;
+  position: absolute;
+  box-sizing: border-box;
+  height: 50px;
+  bottom: 0;
+}
+
+.image-dialog-footer button {
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+  border: 0;
+  background: #4466FF;
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: #ffffff;
+  display: inline-block;
 }

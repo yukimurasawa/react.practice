@@ -6,7 +6,7 @@
     .list-area {
         box-sizing: border-box;
         width: 100%;
-        height: calc(100% - #{$headerHeight} - #{$footerHeight});
+        height: calc(100% - #{$headerHeight});
         padding: 20px;
         background-image: url(../backgroundimage/image5.jpg);
         .todo-list {
@@ -56,5 +56,22 @@
         width: 60px;
         height: 40px;
         float: right;
+    }
+}
+.main-area-footer {
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 0;
+    padding: 20px;
+    width: 100%;
+    .add-image-button {
+        width: 175px;
+        height: 40px;
+        border: 1px solod #cccccc;
+        border-radius: 5px;
+        cursor: pointer;
+        background: #FDC400;
+        float: right;
+        margin-right: 10px;
     }
 }

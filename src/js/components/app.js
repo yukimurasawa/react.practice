@@ -15,7 +15,7 @@ export default class App extends React.Component {
                 {
                     id: "group-1",
                     label: "グループ１"
-                },
+                }
             ],
             todoList: {
                 "index": [
@@ -54,14 +54,14 @@ export default class App extends React.Component {
                 ]
             },
             todoCount: 4,
-            groupCount: 1,
+            groupCount: 2,
             selectedGroup: "index"
         }
     }
 
     onSelectGroup(id) {
-        console.log("onSelectGroup",id);
         this.setState({selectedGroup: id});
+
     }
 
     onAddTodo(label){
@@ -117,16 +117,57 @@ export default class App extends React.Component {
         this.setState(_state);
     }
 
+    onDeleteGroup(id){
+        let _state =Object.assign({},this.state);
+        for(var i=0;i<this.state.groupList.length;i++){
+            if(this.state.groupList[i].id == id){
+                this.state.groupList.splice(i,1);
+                break;
+            }
+        }
+        delete this.state.todoList[id];
+        this.setState(_state);
+    }
+
+    onEditGroup(id,groupName){
+        let _state =Object.assign({},this.state);
+        for(var i=0;this.state.groupList.length;i++){
+            if(this.state.groupList[i].id==id){
+                this.state.groupList[i].label=groupName;
+                break;
+            }
+        }
+        console.log(_state);
+        this.setState(
+            _state
+        );
+    }
+
+
+
     render() {
+        let groupName="";
+
+        for(var i=0;this.state.groupList.length;i++){
+            if(this.state.groupList[i].id== this.state.selectedGroup){
+                groupName=this.state.groupList[i].label;
+                break;
+            }
+        }
+
         return (
         <div className="wrap">
             <SideArea groupList={this.state.groupList}
                       onSelect={this.onSelectGroup.bind(this)}
-                      onAddGroup={this.onAddGroup.bind(this)}/>
+                      onAddGroup={this.onAddGroup.bind(this)}
+                      onDeleteGroup={this.onDeleteGroup.bind(this)}
+                      onEditGroup={this.onEditGroup.bind(this)}
+                      />
             <MainArea todoList={this.state.todoList[this.state.selectedGroup]}
                       onDeleteTodo={this.onDeleteTodo.bind(this)}
                       onCompleteTodo={this.onCompleteTodo.bind(this)}
                       onAddTodo={this.onAddTodo.bind(this)}
+                      groupName={groupName}
                       />
         </div>
         );

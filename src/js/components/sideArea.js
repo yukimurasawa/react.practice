@@ -54,7 +54,8 @@ export default class SideArea extends React.Component {
         });
     }
 
-    onSaveEditGroupDialog(groupName){
+    onSaveEditGroupDialog(id,groupName){
+        this.props.onEditGroup(id,groupName);
         this.setState({showEditGroupDialog: false});
     }
 
@@ -62,7 +63,8 @@ export default class SideArea extends React.Component {
         this.setState({showEditGroupDialog: false});
     }
 
-    onDeleteGroupDialog(){
+    onDeleteGroupDialog(id){
+        this.props.onDeleteGroup(id);
         this.setState({showEditGroupDialog: false});
     }
     
